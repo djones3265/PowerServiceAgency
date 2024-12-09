@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Service Agency</title>
+    <title>Sticky Navbar Example</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General Reset */
@@ -190,6 +190,68 @@
         footer .contact-info a:hover {
             color: #ffbb00;
         }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .navbar ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .hero {
+                height: auto;
+                padding: 50px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .hero a {
+                font-size: 1.1em;
+                padding: 12px 25px;
+            }
+
+            #about {
+                flex-direction: column;
+                padding: 30px;
+                margin: 20px;
+            }
+
+            #about .text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            #about .image {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+
+            footer .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            footer .contact-info div {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -220,7 +282,7 @@
         <div class="text">
             <h2>About Us</h2>
             <p>
-                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country
+                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country.
             </p>
             <br>
             <p>
