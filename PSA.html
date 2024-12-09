@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sticky Navbar Example</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* General Reset */
         * {
@@ -26,9 +27,6 @@
             left: 0;
             width: 100%;
             padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             transition: background-color 0.5s ease, box-shadow 0.5s ease;
             z-index: 10;
             background-color: transparent; /* Initially transparent */
@@ -39,28 +37,18 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
         }
 
-        .navbar .logo img {
+        .navbar .navbar-brand img {
             max-height: 60px;
             width: auto;
         }
 
-        .navbar ul {
-            list-style: none;
-            display: flex;
-        }
-
-        .navbar ul li {
-            margin-left: 20px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
+        .navbar-nav .nav-link {
             color: #fff;
             font-size: 1em;
             transition: color 0.3s;
         }
 
-        .navbar ul li a:hover {
+        .navbar-nav .nav-link:hover {
             color: #ffda44; /* Accent Yellow */
         }
 
@@ -193,25 +181,6 @@
 
         /* Media Queries for Mobile Responsiveness */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 10px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                margin-top: 10px;
-                width: 100%;
-            }
-
-            .navbar ul li {
-                margin-left: 0;
-                margin-bottom: 10px;
-                width: 100%;
-                text-align: center;
-            }
-
             .hero {
                 height: auto;
                 padding: 50px 20px;
@@ -260,17 +229,20 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="/">
-                <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
-            </a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
     </nav>
 
     <!-- Hero Section -->
@@ -324,7 +296,10 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Scroll Detection -->
+    <!-- JavaScript for Bootstrap and Scroll Detection -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         const navbar = document.querySelector('.navbar');
 
