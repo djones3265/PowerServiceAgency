@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <title>Sticky Navbar Example</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+            z-index: 10;
+            background-color: transparent; /* Initially transparent */
+        }
+
+        .navbar.scrolled {
+            background-color: #042c55; /* Blue background when scrolled */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
+        }
+
+        .navbar .logo img {
+            max-height: 60px;
+            width: auto;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffda44; /* Accent Yellow */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://c.wallhere.com/photos/c6/d4/1920x1080_px_Dark_electricity_landscape_Lightning_Long_Exposure_nature_storm-1266327.jpg!d') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero a {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #004f9f;
+            background: #ffda44; /* Accent Yellow */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .hero a:hover {
+            background: #e4b800;
+        }
+
+        /* About Section Styling */
+        #about {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px; /* Increased width of the container */
+            margin: 40px auto;
+            padding: 60px; /* Increased padding for more space */
+            background-color: #042c55; /* Darker blue background */
+            border-radius: 15px; /* Smooth corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+            font-size: 1.4em; /* Larger text for better readability */
+            line-height: 1.8; /* Increased line height for readability */
+            color: #fff; /* Text color should be white for better contrast */
+        }
+
+        #about .text {
+            flex: 1; /* Keep the text section at the same size */
+            padding-right: 40px; /* Increased padding for spacing */
+        }
+
+        #about .text h2 {
+            font-size: 3em; /* Larger heading */
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffda44; /* Yellow for the heading */
+        }
+
+        #about .text p {
+            text-align: justify;
+            color: #fff; /* White text on dark background */
+        }
+
+        #about .image {
+            flex: 2; /* Increased flex value to make the image section larger */
+            max-width: 800px; /* Increased max-width for the image */
+            height: auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #about .image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #042c55;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 1.1em;
+        }
+
+        footer .contact-info div {
+            width: 250px;
+            text-align: center;
+        }
+
+        footer .contact-info i {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        footer .contact-info p {
+            margin: 0;
+        }
+
+        footer .contact-info a {
+            color: #ffda44;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer .contact-info a:hover {
+            color: #ffbb00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Power Service Agency</h1>
+        <p>Delivering unparalleled technical support and customer service excellence.</p>
+        <a href="#contact">Get Started</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="text">
+            <h2>About Us</h2>
+            <p>
+                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country
+            </p>
+            <br>
+            <p>
+                John's first line was Preformed Line Products, which PSA still proudly represents today. In addition to PLP, PSA represents Hughes Brothers Inc., Prysmian Group (formerly Pirelli Cables), and several other top-line suppliers of the Energy & Communications Market Sectors.
+            </p>
+            <br>
+            <p>
+                Our outside Sales Force with extensive experience covers our Territory of Tennessee and Kentucky and is always available to help our customers in any way possible.
+            </p>
+        </div>
+        <div class="image">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2023/02/PXL-1536x914.jpg" alt="Power Service Agency">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact-info">
+            <div>
+                <i class="fas fa-map-pin"></i>
+                <p><strong>Location</strong><br>P.O. Box 292924<br>Nashville, TN 37229</p>
+            </div>
+            <div>
+                <i class="fas fa-phone-alt"></i>
+                <p><strong>Call</strong><br>615-400-2744</p>
+            </div>
+            <div>
+                <i class="fas fa-envelope"></i>
+                <p><strong>Email</strong><br><a href="mailto:sales@powerserviceagency.com">sales@powerserviceagency.com</a></p>
+            </div>
+        </div>
+        <br></br>
+        
+        <div class="copyright">
+            <p>&copy; 2024 Power Service Agency. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Scroll Detection -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight * 0.8) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
