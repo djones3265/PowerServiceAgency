@@ -31,6 +31,7 @@
             z-index: 10;
             background-color: transparent; /* Initially transparent */
             color: #fff;
+            box-sizing: border-box; /* Ensure padding doesn't affect layout */
         }
 
         .navbar.scrolled {
@@ -63,7 +64,7 @@
             align-items: center;
             text-align: center;
             color: #fff;
-            padding: 20px;
+            padding-top: 100px; /* Add top padding to prevent overlap */
         }
 
         .hero h1 {
@@ -182,9 +183,18 @@
 
         /* Media Queries for Mobile Responsiveness */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px; /* Adjust padding for smaller screens */
+            }
+
+            .navbar .navbar-brand img {
+                max-height: 50px; /* Reduce logo size for mobile */
+            }
+
             .hero {
                 height: auto;
                 padding: 50px 20px;
+                padding-top: 120px; /* Increase top padding for mobile */
             }
 
             .hero h1 {
@@ -240,7 +250,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#about" style="color:white;">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services "style="color:white;">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services" style="color:white;">Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact" style="color:white;">Contact</a></li>
             </ul>
         </div>
@@ -258,10 +268,12 @@
         <div class="text">
             <h2>About Us</h2>
             <p>
-                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country.            </p>
+                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country.
+            </p>
             <br>
             <p>
-                John's first line was Preformed Line Products, which PSA still proudly represents today. In addition to PLP, PSA represents Hughes Brothers Inc., Prysmian Group (formerly Pirelli Cables), and several other top-line suppliers of the Energy & Communications Market Sectors.            </p>
+                John's first line was Preformed Line Products, which PSA still proudly represents today. In addition to PLP, PSA represents Hughes Brothers Inc., Prysmian Group (formerly Pirelli Cables), and several other top-line suppliers of the Energy & Communications Market Sectors.
+            </p>
             <br>
             <p>
                 Our outside Sales Force with extensive experience covers our Territory of Tennessee and Kentucky and is always available to help our customers in any way possible.
@@ -275,39 +287,22 @@
     <!-- Footer -->
     <footer>
         <div class="contact-info">
-            <div>
-                <i class="fas fa-map-pin"></i>
-                <p><strong>Location</strong><br>P.O. Box 292924<br>Nashville, TN 37229</p>
-            </div>
-            <div>
-                <i class="fas fa-phone-alt"></i>
-                <p><strong>Call</strong><br>615-400-2744</p>
-            </div>
-            <div>
-                <i class="fas fa-envelope"></i>
-                <p><strong>Email</strong><br><a href="mailto:sales@powerserviceagency.com">sales@powerserviceagency.com</a></p>
-            </div>
-        </div>
-        <br></br>
-        
-        <div class="copyright">
-            <p>&copy; 2024 Power Service Agency. All rights reserved.</p>
+            <div><i class="fas fa-map-marker-alt"></i><p>2371 Garrison Cove, Murfreesboro, TN 37130</p></div>
+            <div><i class="fas fa-phone"></i><p>615.956.3712</p></div>
+            <div><i class="fas fa-envelope"></i><p><a href="mailto:info@powerserviceagency.com">info@powerserviceagency.com</a></p></div>
         </div>
     </footer>
 
-    <!-- JavaScript for Bootstrap and Scroll Detection -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        const navbar = document.querySelector('.navbar');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight * 0.8) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+    <!-- Navbar Scroll Effect -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
 
