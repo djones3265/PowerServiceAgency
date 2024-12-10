@@ -222,9 +222,64 @@
         footer .contact-info a:hover {
             color: #ffbb00;
         }
+
+        /* Updated Lazy Section Styling */
+        .lazy-section {
+    max-width: 1400px; /* Same max-width as the About Us section */
+    margin: 40px auto; /* Center and add vertical spacing */
+    padding: 60px; /* Same padding as the About Us section */
+    background-color: #042c55; /* Blue background */
+    border-radius: 20px; /* Rounded corners for the blue background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Match About Us shadow */
+    display: flex;
+    justify-content: space-between; /* Align boxes with space between */
+    align-items: stretch;
+    flex-wrap: wrap; /* Ensure content wraps for mobile */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px); /* Slide effect for appearance */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+}
+
+.lazy-section.loaded {
+    opacity: 1;
+    transform: translateY(0); /* Reset transform when loaded */
+}
+
+.lazy-section .service-box {
+    background-color: white; /* White boxes on blue background */
+    color: #333;
+    padding: 30px;
+    width: 30%;
+    border-radius: 10px; /* Rounded corners for the white boxes */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the white boxes */
+    margin: 10px; /* Add spacing between boxes */
+}
+
+.lazy-section .service-box h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #042c55;
+}
+
+.lazy-section .service-box p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #333;
+}
+
     
         /* Media Queries for Mobile Responsiveness */
         @media (max-width: 768px) {
+            .lazy-section {
+                padding: 20px; /* Adjust padding for smaller screens */
+                min-height: auto; /* Let height adjust naturally on mobile */
+                margin: 20px; /* Reduce margins for mobile */
+            }
+
+            .lazy-section .service-box {
+                width: 100%; /* Full width for mobile stacking */
+                margin: 10px 0; /* Add vertical spacing between stacked boxes */
+            }
             .navbar {
                 padding: 10px 20px; /* Adjust padding for smaller screens */
                 background-color: #042c55; /* Set the background color for mobile */
@@ -361,27 +416,8 @@
     </section>
 
      <!-- New Services Section (3 White Boxes with Text Content) -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="service-box">
-                <h3>Service 1</h3>
-                <p>
-                    We offer a comprehensive range of services including equipment supply, project management, and system integration. Our team works diligently to ensure the highest standards in every project.
-                </p>
-            </div>
-            <div class="service-box">
-                <h3>Service 2</h3>
-                <p>
-                    Our expertise extends to both the energy and communications sectors. We provide solutions that are cost-effective and tailored to meet the specific needs of our clients.
-                </p>
-            </div>
-            <div class="service-box">
-                <h3>Service 3</h3>
-                <p>
-                    Our dedicated sales force is always available to help with your needs. We pride ourselves on our excellent customer service and quick response times, ensuring your satisfaction.
-                </p>
-            </div>
-        </div>
+     <section id="services-lazy" class="lazy-section" data-src="services-content.html">
+        <div class="placeholder">Loading services...</div>
     </section>
 
 
@@ -409,6 +445,6 @@
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
-
+ <script src="script.js"></script>
 </body>
 </html>
