@@ -6,6 +6,39 @@
     <title>Contact Us</title>
     <style>
         /* General Reset */
+        /* Sticky Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 30px;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+            z-index: 10;
+            background-color: transparent; /* Initially transparent */
+            color: #fff;
+            box-sizing: border-box; /* Ensure padding doesn't affect layout */
+        }
+    
+        .navbar.scrolled {
+            background-color: #042c55; /* Blue background when scrolled */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
+        }
+    
+        .navbar .navbar-brand img {
+            max-height: 60px;
+            width: auto;
+        }
+    
+        .navbar-nav .nav-link {
+            color: #fff;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+    
+        .navbar-nav .nav-link:hover {
+            color: #ffda44; /* Accent Yellow */
+        }
         * {
             margin: 0;
             padding: 0;
@@ -99,6 +132,18 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px; /* Adjust padding for smaller screens */
+                background-color: #042c55; /* Set the background color for mobile */
+            }
+
+            .navbar-collapse {
+                 background-color: #042c55; /* Blue background when the menu is open */
+            }
+    
+            .navbar .navbar-brand img {
+                max-height: 50px; /* Reduce logo size for mobile */
+            }
             .contact-card {
                 flex: 1 1 100%; /* Full width on smaller screens */
             }
@@ -116,8 +161,8 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="/">
-            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" aref="https://djones3265.github.io/PowerServiceAgency/PSA.html"alt="Power Service Agency Logo">
+        <a class="navbar-brand" href="https://djones3265.github.io/PowerServiceAgency/PSA.html">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
