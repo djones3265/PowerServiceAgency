@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line Card</title>
+    <title>Power Service Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        /* General Reset */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-/* Sticky Navbar */
-.navbar {
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
             position: fixed;
             top: 0;
-            right: 0;
+            left: 0;
             width: 100%;
-            padding: 15px 40px;
-            
+            padding: 15px 30px;
             transition: background-color 0.5s ease, box-shadow 0.5s ease;
             z-index: 10;
-            background-color: #042c55; /* Initially transparent */
+            background-color: #042c55;
             box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .navbar.scrolled {
-            background-color: #042c55; /* Blue background when scrolled */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
+            background-color: #042c55;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .navbar .navbar-brand img {
@@ -39,26 +43,14 @@
             width: auto;
         }
 
-        .navbar-nav {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar-nav .nav-item {
-            margin-left: 20px;
-        }
-
         .navbar-nav .nav-link {
             color: #fff;
-            text-decoration: none;
             font-size: 1em;
             transition: color 0.3s;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #ddd;
+            color: #ffda44;
         }
 
         header {
@@ -78,46 +70,58 @@
             font-size: 1.2em;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        /* Interactive Map Styling */
+        .map-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            position: relative;
         }
-        h1 {
-            text-align: center;
-            color: #333;
+
+        svg {
+            width: 80%;
+            height: auto;
+            max-width: 1000px;
+            cursor: pointer;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .company {
-            background: #fff;
-            padding: 15px;
+
+        /* Tooltip for Hover Effect */
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1.3s forwards;
+            display: none;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 100;
         }
-        .company h2 {
-            margin: 0 0 10px;
-            color: #042c55;
+
+        .state {
+            fill:#042c55;
+            cursor: pointer;
+            transition: fill 0.3s;
         }
-        .company p {
-            margin: 0;
-            color: #555;
+
+        .state:hover {
+            fill: #FF0000;
         }
-         /* Footer Styling */
-         footer {
+
+        .state.clicked {
+            fill: #FF0000;
+        }
+
+        /* Footer Styling */
+        footer {
             background-color: #042c55;
             color: #fff;
             padding: 30px 0;
             text-align: center;
         }
-    
+
         footer .contact-info {
             display: flex;
             justify-content: center;
@@ -125,173 +129,100 @@
             gap: 20px;
             font-size: 1.1em;
         }
-    
+
         footer .contact-info div {
             width: 250px;
             text-align: center;
         }
-    
+
         footer .contact-info i {
             font-size: 1.5em;
             margin-bottom: 10px;
         }
-    
+
         footer .contact-info p {
             margin: 0;
         }
-    
+
         footer .contact-info a {
             color: #ffda44;
             text-decoration: none;
             font-weight: bold;
         }
-    
+
         footer .contact-info a:hover {
             color: #ffbb00;
         }
-        footer .contact-info {
-            flex-direction: column;
-            gap: 10px;
-        }
-    
-        footer .contact-info div {
-            width: 100%;
-        }
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+
+        /* Media Queries for Mobile Responsiveness */
         @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
             .navbar {
-                padding: 10px 20px; /* Adjust padding for smaller screens */
-                background-color: #042c55; /* Set the background color for mobile */
+                padding: 10px 20px;
+                background-color: #042c55;
             }
 
-            .navbar-collapse {
-                 background-color: #042c55; /* Blue background when the menu is open */
-            }
-    
             .navbar .navbar-brand img {
-                max-height: 50px; /* Reduce logo size for mobile */
+                max-height: 50px;
+            }
+
+            footer .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            footer .contact-info div {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="https://djones3265.github.io/PowerServiceAgency/PSA.html">
             <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
         </a>
-        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#about" style="color:white;">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#https://djones3265.github.io/PowerServiceAgency/LineCard.html" style="color:white;">Line Card</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://djones3265.github.io/PowerServiceAgency/LineCard.html" style="color:white;">Line Card</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://djones3265.github.io/PowerServiceAgency/Contact.html" style="color:white;">Contact</a></li>
             </ul>
         </div>
     </nav>
-    
+
+    <br>
+    <br>
+    <br>
+    <br>
+
     <header class="header">
-        <h1>Contact Us</h1>
-        <p>We're here to assist you. Reach out to us!</p>
+        <h1>Line Card</h1>
+        <p>View our distributors by clicking on the state</p>
     </header>
 
-    <div class="container">
-        <h1>Our Line Card</h1>
-        <div class="grid" id="grid">
-            <div class="company">
-                <h2>Company 1</h2>
-                <p>Leading manufacturer of industrial automation solutions.</p>
-            </div>
+    <!-- Interactive Map Section -->
+    <section class="map-container" >
+        <svg id="us-map" xmlns="http://www.w3.org/2000/svg" viewBox="590 200 150 200"  width="959" height="593">
+            <a href="Tennessee.html">
+                <path class="state in"d="m 620.9,365.1 45.7,-4 22.9,-2.9 .1,-4.9 1.4,-1.3 1.5,.1 1.3,-.9 .8,-4.1 4.6,-3 3.6,-.5 3.2,-2.6 .5,-1.2 4.7,-2.4 .6,-3.4 4,-3.3 .8,.2 .1,1.5 .8,.8 1.5,-1.2 .7,-2.1 3.5,-2.5 2.6,1.1 2.4,-5.2 1.4,-1.2 1.5,.1 0,-5.2 .3,-.7 -4.6,.5 -.2,1 -28.9,3.3 -5.6,1.4 -20.5,1.4 -5.2,.8 -17.4,1 -2.6,.8 -22.6,2 -.7,-.6 h -3.7 l 1.2,3.2 -.6,.9 -23.3,1.5 -.8,1 -.8,-.7 h -1 v 1.3 l .6,1 -.1,1 -1.4,.5 1.4,1.5 -.8,.7 -1.7,-.2 .6,1 1.2,1.1 v .7 l -1.2,.5 -1,2 .1,.6 1.4,1 -.4,.7 h -1.5 v .5 l .9,.9 .1,.8 -1.4,.2 -.5,.8 -1.6,.2 -.9,.9 .6,.9 1.1,-.1 .5,.9 -1.6,1.3 .4,1.5 -2,-.6 -.1,.7 .4,1.1 -.3,1.4 -1.3,-.8 -.8,.8 1.1,.1 .1,1.5 -.6,1 1.1,.9 -.3,1.5 .8,.7 -.7,1 -1.2,-.5 -.9,2.2 -1.6,.7 z">
+            </a>
+            <a href="Kentucky.html">
+                <path class="state ky"d="m 692.1,322.5 -20.5,1.4 -5.2,.8 -17.4,1 -2.6,.8 -22.6,2 -.7,-.6 h -3.7 l 1.2,3.2 -.6,.9 -23.3,1.5 1,-2.7 1.4,.9 .7,-.4 1.2,-4.1 -1,-1 1,-2 .2,-.9 -1.3,-.8 -.3,-1.8 4,-3.7 6.9,3 1.5,-.3 .4,-2.4 -1.7,-1.8 .4,-3.3 1,-.5 1.2,.6 .6,-1.2 3.7,-.6 .1,-.9 -1.5,-2.2 -.1,-1.1 2.2,-2.7 0,-.9 1.1,.8 .6,-1 -.7,-1.7 4.6,-.5 .2,1.2 1.1,.2 .4,-.9 -.6,-1.3 .3,-.8 1.3,.8 1.7,-.4 1.7,.6 3.4,2.1 1.8,-2.8 3.5,-2.2 3,3.3 1.6,-2.1 .3,-2.7 3.8,-2.3 .2,1.3 1.9,1.2 3,-.2 1.2,-.7 .1,-3.4 2.5,-3.7 4.6,-4.4 -.1,-1.7 1.2,-3.8 2.2,1 6.7,-4.5 -.4,-1.7 -1.5,-2.1 1,-1.9 1.3,.5 2.2,.1 1.9,-.8 2.9,1.2 2.2,3.4 v 1 l 4.1,.7 2.3,-.2 1.9,2.1 2.2,.2 v -1 l 1.9,-.8 3,.8 1.2,.8 1.3,-.7 h .9 l .6,-1.7 3.4,-1.8 .5,.8 .8,2.9 3.5,1.4 1.2,2.1 -.1,1.1 .6,1 -.6,3.6 1.9,1.6 .8,1.1 1,.6 -.1,.9 4.4,5.6 h 1.4 l 1.5,1.8 1.2,.3 1.4,-.1 -4.9,6.6 -2.9,1 -3,3 -.4,2.2 -2.1,1.3 -.1,1.7 -1.4,1.4 -1.8,.5 -.5,1.9 -1,.4 -6.9,4.2 z m -98,11.3 -.7,-.7 .2,-1 h 1.1 l .7,.7 -.3,1 z"/>
+            </a>
+            
+            <a href="Indiana.html">
+                <path class="state tn" d="m 629.2,214.8 -5.1,2.3 -4.7,-1.4 4.1,50.2 -1,5.2 v 2 l 2.4,3.5 v .7 l -.3,.9 .9,1.9 -.3,2.4 -1.6,1.8 -1.3,4.2 -3.8,5.3 -.1,7 h -1 l .9,1.9 1.1,.8 .6,-1 -.7,-1.7 4.6,-.5 .2,1.2 1.1,.2 .4,-.9 -.6,-1.3 .3,-.8 1.3,.8 1.7,-.4 1.7,.6 3.4,2.1 1.8,-2.8 3.5,-2.2 3,3.3 1.6,-2.1 .3,-2.7 3.8,-2.3 .2,1.3 1.9,1.2 3,-.2 1.2,-.7 .1,-3.4 2.5,-3.7 4.6,-4.4 -.1,-1.7 1.2,-3.8 2.2,1 6.7,-4.5 -.4,-1.7 -1.5,-2.1 1,-1.9 -6.6,-57.2 -.1,-1.4 -32.4,3.4 z" />
+            </a>
+        </svg>
+        <div id="tooltip" class="tooltip"></div>
+    </section>
 
-            <div class="company">
-                <h2>Company 2</h2>
-                <p>Specializes in high-performance electrical components.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 3</h2>
-                <p>Provider of innovative networking and communication products.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 4</h2>
-                <p>Experts in precision measurement instruments.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 5</h2>
-                <p>Global supplier of HVAC systems and components.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 6</h2>
-                <p>Leading producer of advanced lighting solutions.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 7</h2>
-                <p>Specializes in robotics and automation systems.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 8</h2>
-                <p>Renowned for cutting-edge renewable energy technologies.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 9</h2>
-                <p>Provides high-quality electrical wiring systems.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 10</h2>
-                <p>Experts in advanced water filtration and purification systems.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 11</h2>
-                <p>Manufacturers of durable industrial tools and equipment.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 12</h2>
-                <p>Known for innovative packaging solutions.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 13</h2>
-                <p>Leading provider of safety and protective gear.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 14</h2>
-                <p>Developers of state-of-the-art software systems.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 15</h2>
-                <p>Specializes in eco-friendly industrial chemicals.</p>
-            </div>
-
-            <div class="company">
-                <h2>Company 16</h2>
-                <p>Global leader in electronic testing and diagnostics.</p>
-            </div>
-        </div>
-    </div>
+    <!-- Footer -->
     <footer>
         <div class="contact-info">
             <div><i class="fas fa-map-marker-alt"></i><p>P.O. Box 292924 Nashville TN 37229</p></div>
@@ -300,13 +231,48 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Navbar Scroll Effect -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const companies = document.querySelectorAll('.company');
-            companies.forEach((company, index) => {
-                company.style.animationDelay = `${index * 0.25}s`;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Make the states clickable and show tooltips
+        document.addEventListener("DOMContentLoaded", function() {
+            const tooltip = document.getElementById('tooltip');
+            const states = ['in', 'ky', 'tn']; // States to make clickable
+
+            states.forEach(function(state) {
+                const stateElement = document.querySelector(`.state.${state}`);
+                if (stateElement) {
+                    stateElement.classList.add('state');
+
+                    // Hover effect
+                    stateElement.addEventListener('mouseover', function() {
+                        tooltip.style.display = 'block';
+                        tooltip.textContent = state.toUpperCase(); // Show state name in tooltip
+                        const rect = stateElement.getBoundingClientRect();
+                        tooltip.style.left = `${rect.left + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+                        tooltip.style.top = `${rect.top - tooltip.offsetHeight - 5}px`;
+                    });
+
+                    // Hide tooltip when mouse leaves
+                    stateElement.addEventListener('mouseout', function() {
+                        tooltip.style.display = 'none';
+                    });
+
+                    // Click event
+                    
+                }
             });
         });
     </script>
+
 </body>
-</html>  
+</html>

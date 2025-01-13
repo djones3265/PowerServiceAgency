@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+/* Sticky Navbar */
+.navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            padding: 15px 40px;
+            
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+            z-index: 10;
+            background-color: #042c55; /* Initially transparent */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar.scrolled {
+            background-color: #042c55; /* Blue background when scrolled */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
+        }
+
+        .navbar .navbar-brand img {
+            max-height: 60px;
+            width: auto;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ddd;
+        }
+
+        header {
+            
+            padding-top: 125px; /* Add padding to the top */
+            text-align: center;
+            color: #042c55;
+        
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .company {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.3s forwards;
+        }
+        .company h2 {
+            margin: 0 0 10px;
+            color: #042c55;
+        }
+        .company p {
+            margin: 0;
+            color: #555;
+        }
+         /* Footer Styling */
+         footer {
+            background-color: #042c55;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+    
+        footer .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 1.1em;
+        }
+    
+        footer .contact-info div {
+            width: 250px;
+            text-align: center;
+        }
+    
+        footer .contact-info i {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    
+        footer .contact-info p {
+            margin: 0;
+        }
+    
+        footer .contact-info a {
+            color: #ffda44;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    
+        footer .contact-info a:hover {
+            color: #ffbb00;
+        }
+        footer .contact-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        footer .contact-info div {
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                padding: 10px 20px; /* Adjust padding for smaller screens */
+                background-color: #042c55; /* Set the background color for mobile */
+            }
+
+            .navbar-collapse {
+                 background-color: #042c55; /* Blue background when the menu is open */
+            }
+    
+            .navbar .navbar-brand img {
+                max-height: 50px; /* Reduce logo size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="https://djones3265.github.io/PowerServiceAgency/PSA.html">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
+        </a>
+        
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about" style="color:white;">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#https://djones3265.github.io/PowerServiceAgency/LineCard.html" style="color:white;">Line Card</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://djones3265.github.io/PowerServiceAgency/Contact.html" style="color:white;">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="header">
+        <h1>Contact Us</h1>
+        <p>We're here to assist you. Reach out to us!</p>
+    </header>
+
+    <div class="container">
+        <h1>Our Line Card</h1>
+        <div class="grid" id="grid">
+            <div class="company">
+                <h2>Company 1</h2>
+                <p>Leading manufacturer of industrial automation solutions.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 2</h2>
+                <p>Specializes in high-performance electrical components.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 3</h2>
+                <p>Provider of innovative networking and communication products.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 4</h2>
+                <p>Experts in precision measurement instruments.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 5</h2>
+                <p>Global supplier of HVAC systems and components.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 6</h2>
+                <p>Leading producer of advanced lighting solutions.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 7</h2>
+                <p>Specializes in robotics and automation systems.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 8</h2>
+                <p>Renowned for cutting-edge renewable energy technologies.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 9</h2>
+                <p>Provides high-quality electrical wiring systems.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 10</h2>
+                <p>Experts in advanced water filtration and purification systems.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 11</h2>
+                <p>Manufacturers of durable industrial tools and equipment.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 12</h2>
+                <p>Known for innovative packaging solutions.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 13</h2>
+                <p>Leading provider of safety and protective gear.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 14</h2>
+                <p>Developers of state-of-the-art software systems.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 15</h2>
+                <p>Specializes in eco-friendly industrial chemicals.</p>
+            </div>
+
+            <div class="company">
+                <h2>Company 16</h2>
+                <p>Global leader in electronic testing and diagnostics.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="contact-info">
+            <div><i class="fas fa-map-marker-alt"></i><p>P.O. Box 292924 Nashville TN 37229</p></div>
+            <div><i class="fas fa-phone"></i><p>615-400-2744</p></div>
+            <div><i class="fas fa-envelope"></i><p><a href="mailto:info@powerserviceagency.com">sales@powerserviceagency.com</a></p></div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const companies = document.querySelectorAll('.company');
+            companies.forEach((company, index) => {
+                company.style.animationDelay = `${index * 0.25}s`;
+            });
+        });
+    </script>
+</body>
+</html>  
