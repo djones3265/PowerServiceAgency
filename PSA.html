@@ -1,450 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Service Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-    
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
-    
-        /* Sticky Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 30px;
-            transition: background-color 0.5s ease, box-shadow 0.5s ease;
-            z-index: 10;
-            background-color: transparent; /* Initially transparent */
-            color: #fff;
-            box-sizing: border-box; /* Ensure padding doesn't affect layout */
-        }
-    
-        .navbar.scrolled {
-            background-color: #042c55; /* Blue background when scrolled */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
-        }
-    
-        .navbar .navbar-brand img {
-            max-height: 60px;
-            width: auto;
-        }
-    
-        .navbar-nav .nav-link {
-            color: #fff;
-            font-size: 1em;
-            transition: color 0.3s;
-        }
-    
-        .navbar-nav .nav-link:hover {
-            color: #ffda44; /* Accent Yellow */
-        }
-    
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: url('https://c.wallhere.com/photos/c6/d4/1920x1080_px_Dark_electricity_landscape_Lightning_Long_Exposure_nature_storm-1266327.jpg!d') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            padding-top: 100px; /* Add top padding to prevent overlap */
-        }
-    
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-    
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-    
-        .hero a {
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: #004f9f;
-            background: #ffda44; /* Accent Yellow */
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-    
-        .hero a:hover {
-            background: #e4b800;
-        }
-    
-        /* About Section Styling */
-        #about {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px; /* Increased width of the container */
-            margin: 40px auto;
-            padding: 60px; /* Increased padding for more space */
-            background-color: #042c55; /* Darker blue background */
-            border-radius: 15px; /* Smooth corners */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
-            font-size: 1.4em; /* Larger text for better readability */
-            line-height: 1.8; /* Increased line height for readability */
-            color: #fff; /* Text color should be white for better contrast */
-        }
-    
-        #about .text {
-            flex: 1; /* Keep the text section at the same size */
-            padding-right: 40px; /* Increased padding for spacing */
-        }
-    
-        #about .text h2 {
-            font-size: 3em; /* Larger heading */
-            margin-bottom: 20px;
-            text-align: center;
-            color: #ffda44; /* Yellow for the heading */
-        }
-    
-        #about .text p {
-            text-align: justify;
-            color: #fff; /* White text on dark background */
-        }
-    
-        #about .image {
-            flex: 2; /* Increased flex value to make the image section larger */
-            max-width: 800px; /* Increased max-width for the image */
-            height: auto;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-    
-        #about .image img {
-            width: 100%;
-            height: auto;
-        }
-    
-        /* New Services Section Styling */
-        .services-section {
-            background-color: #042c55;
-            padding: 60px 0;
-        }
-    
-        .services-section .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    
-        .service-box {
-            background-color: white;
-            color: #333;
-            padding: 30px;
-            width: 30%;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-    
-        .service-box h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #042c55;
-        }
-    
-        .service-box p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #333;
-        }
-    
-        /* Gap Section (White Background) */
-        .gap-section {
-            background-color: white;
-            height: 50px;  /* Adjust the height of the gap here */
-        }
-    
-        /* Footer Styling */
-        footer {
-            background-color: #042c55;
-            color: #fff;
-            padding: 30px 0;
-            text-align: center;
-        }
-    
-        footer .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 1.1em;
-        }
-    
-        footer .contact-info div {
-            width: 250px;
-            text-align: center;
-        }
-    
-        footer .contact-info i {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-    
-        footer .contact-info p {
-            margin: 0;
-        }
-    
-        footer .contact-info a {
-            color: #ffda44;
-            text-decoration: none;
-            font-weight: bold;
-        }
-    
-        footer .contact-info a:hover {
-            color: #ffbb00;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Service Agency | Electrical Distribution Experts</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Updated Lazy Section Styling */
-        .lazy-section {
-    max-width: 1400px; /* Same max-width as the About Us section */
-    margin: 40px auto; /* Center and add vertical spacing */
-    padding: 60px; /* Same padding as the About Us section */
-    background-color: #042c55; /* Blue background */
-    border-radius: 20px; /* Rounded corners for the blue background */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Match About Us shadow */
+  <style>
+    :root {
+      --blue: #0a3d62;
+      --electric: #00d4ff;
+      --yellow: #ffda44;
+      --dark: #0f172a;
+      --glass: rgba(255, 255, 255, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Animated Energy Background */
+    .energy-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 30% 70%, #0a3d62 0%, #000 70%);
+      z-index: -2;
+    }
+    .energy-lines {
+      position: absolute;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,212,255,0.03) 50px, rgba(0,212,255,0.03) 52px);
+      animation: flow 20s linear infinite;
+    }
+    @keyframes flow { 0% { transform: translateX(0); } 100% { transform: translateX(-52px); } }
+
+    /* Navbar */
+    /* ---------------------------------------------------------
+   MODERN GLASS NAVBAR
+--------------------------------------------------------- */
+.nav-modern {
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    transition: background .3s ease, box-shadow .3s ease;
+    z-index: 9999;
+}
+
+.nav-modern.scrolled {
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
     display: flex;
-    justify-content: space-between; /* Align boxes with space between */
-    align-items: stretch;
-    flex-wrap: wrap; /* Ensure content wraps for mobile */
-    opacity: 0; /* Initially hidden */
-    transform: translateY(50px); /* Slide effect for appearance */
-    transition: opacity 1s ease, transform 1s ease; /* Smooth transition */
+    align-items: center;
+    justify-content: space-between;
 }
 
-.lazy-section.loaded {
-    opacity: 1;
-    transform: translateY(0); /* Reset transform when loaded */
+.nav-logo img {
+    height: 48px;
+    transition: .2s ease;
 }
 
-.lazy-section .service-box {
-    background-color: white; /* White boxes on blue background */
-    color: #333;
-    padding: 30px;
-    width: 30%;
-    border-radius: 10px; /* Rounded corners for the white boxes */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the white boxes */
-    margin: 10px; /* Add spacing between boxes */
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
 }
 
-.lazy-section .service-box h3 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #042c55;
+.nav-link {
+    color: #e6eef7;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: .25s ease;
 }
 
-.lazy-section .service-box p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: #333;
+/* Hover underline animation */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: #ffda44;
+    transition: width .25s ease;
 }
 
-    
-        /* Media Queries for Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .lazy-section {
-                padding: 20px; /* Adjust padding for smaller screens */
-                min-height: auto; /* Let height adjust naturally on mobile */
-                margin: 20px; /* Reduce margins for mobile */
-            }
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
 
-            .lazy-section .service-box {
-                width: 100%; /* Full width for mobile stacking */
-                margin: 10px 0; /* Add vertical spacing between stacked boxes */
-            }
-            .navbar {
-                padding: 10px 20px; /* Adjust padding for smaller screens */
-                background-color: #042c55; /* Set the background color for mobile */
-            }
+/* Mobile menu button */
+.nav-toggle {
+    display: none;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
 
-            .navbar-collapse {
-                 background-color: #042c55; /* Blue background when the menu is open */
-            }
-    
-            .navbar .navbar-brand img {
-                max-height: 50px; /* Reduce logo size for mobile */
-            }
-    
-            .hero {
-                height: auto;
-                padding: 50px 20px;
-                padding-top: 120px; /* Increase top padding for mobile */
-            }
-    
-            .hero h1 {
-                font-size: 2.5em;
-            }
-    
-            .hero p {
-                font-size: 1.2em;
-            }
-    
-            .hero a {
-                font-size: 1.1em;
-                padding: 12px 25px;
-            }
-    
-            #about {
-                flex-direction: column;
-                padding: 30px;
-                margin: 20px;
-            }
-    
-            #about .text {
-                padding-right: 0;
-                margin-bottom: 20px;
-            }
-    
-            #about .image {
-                max-width: 100%;
-                margin-top: 20px;
-            }
-    
-            .services-section .container {
-                flex-direction: column;
-                gap: 20px; /* Adjust the gap between stacked boxes */
-            }
-    
-            .service-box {
-                width: 100%; /* Full width for each box */
-                margin-bottom: 20px; /* Space between stacked boxes */
-            }
-    
-            footer .contact-info {
-                flex-direction: column;
-                gap: 10px;
-            }
-    
-            footer .contact-info div {
-                width: 100%;
-            }
-    
-            /* Mobile Dropdown Menu */
-            nav ul ul {
-                background-color: #042c55; /* Ensure dropdown background remains blue */
-                box-shadow: none;
-                position: static;
-                width: 100%;
-                display: block;
-            }
-    
-            nav ul {
-                flex-direction: column;
-            }
-    
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
-    
+/* Mobile dropdown */
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    padding: 16px;
+}
+
+.nav-mobile a {
+    padding: 10px 0;
+    color: #e6eef7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+}
+
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, #000 100%);
+    }
+    .hero h1 {
+      font-size: 5.5rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, #fff, var(--electric));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -2px;
+      margin-bottom: 1rem;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+      to { text-shadow: 0 0 40px rgba(0,212,255,0.8); }
+    }
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 1.5rem auto;
+      opacity: 0.9;
+    }
+    .cta-button {
+      padding: 1rem 3rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      background: var(--yellow);
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(255,218,68,0.4);
+    }
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255,218,68,0.6);
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem auto;
+      max-width: 1200px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem auto;
+      max-width: 1200px;
+    }
+    .service-box {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5rem;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.4s;
+      border: 1px solid rgba(0,212,255,0.2);
+    }
+    .service-box:hover {
+      transform: translateY(-15px);
+      background: rgba(0,212,255,0.1);
+      box-shadow: 0 20px 40px rgba(0,212,255,0.2);
+    }
+    .service-box i {
+      font-size: 3.5rem;
+      color: var(--electric);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      padding: 4rem 5%;
+      text-align: center;
+      border-top: 1px solid rgba(0,212,255,0.2);
+    }
+    .footer-links a {
+      color: var(--electric);
+      margin: 0 1rem;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3.5rem; }
+      .navbar { padding: 1rem 5%; }
+      .nav-links { flex-direction: column; background: rgba(10,61,98,0.98); position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 0; display: none; }
+      .nav-links.active { display: flex; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="https://djones3265.github.io/PowerServiceAgency/PSA.html">
-            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
+  <!-- Animated Background -->
+  <div class="energy-bg">
+    <div class="energy-lines"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="nav-modern fixed-top">
+    <div class="nav-container">
+        <a class="nav-logo" href="PSA.html">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#about" style="color:white;">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://djones3265.github.io/PowerServiceAgency/LineCard.html" style="color:white;">Line Card</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://djones3265.github.io/PowerServiceAgency/Contact.html" style="color:white;">Contact</a></li>
-            </ul>
+
+        <div class="nav-links">
+            <a href="PSA.html" class="nav-link active">Home</a>
+            <a href="LineCard.html" class="nav-link">Line Card</a>
+            <a href="Contact.html" class="nav-link ">Contact</a>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to Power Service Agency</h1>
-        <p>Delivering unparalleled technical support and customer service excellence.</p>
-        <a href="https://djones3265.github.io/PowerServiceAgency/Contact.html">Contact Us</a>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="text">
-            <h2>About Us</h2>
-            <p>
-                Power Service Agency began as "John S. Baron and Associates" in 1948 in Music City - Nashville, TN. Today PSA is stronger than ever in its third generation of the Baron family. With a legacy spanning nearly 75 years, Power Service Agency is one of the most experienced agencies in the country.
-            </p>
-            <br>
-            <p>
-                John's first line was Preformed Line Products, which PSA still proudly represents today. In addition to PLP, PSA represents Hughes Brothers Inc., Prysmian Group (formerly Pirelli Cables), and several other top-line suppliers of the Energy & Communications Market Sectors.
-            </p>
-            <br>
-            <p>
-                Our outside Sales Force with extensive experience covers our Territory of Tennessee and Kentucky and is always available to help our customers in any way possible.
-            </p>
+        <!-- Mobile menu button -->
+        <div class="nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
-        <div class="image">
-            <img src="https://www.powerserviceagency.com/wp-content/uploads/2023/02/PXL-1536x914.jpg" alt="Power Service Agency">
-        </div>
-    </section>
+    </div>
 
-     <!-- New Services Section (3 White Boxes with Text Content) -->
-     <section id="services-lazy" class="lazy-section" data-src="services-content.html">
-        <div class="placeholder">Loading services...</div>
-    </section>
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" class="nav-mobile">
+        <a href="PSA.html">Home</a>
+        <a href="LineCard.html">Line Card</a>
+        <a href="Contact.html">Contact</a>
+    </div>
+</nav>
 
+  <!-- Hero -->
+  <section class="hero">
+    <h1>POWER SERVICE AGENCY</h1>
+    <p>75 Years of Excellence in Electrical Distribution • Tennessee & Kentucky</p>
+    <button class="cta-button">Get in Touch</button>
+  </section>
 
-    <!-- Gap Section (White Background) -->
-    <section class="gap-section"></section>
+  <!-- About -->
+  <div class="glass-card">
+    <h2 style="text-align:center; font-size:3rem; margin-bottom:2rem; color:var(--electric);">75 Years of Trusted Partnership</h2>
+    <p style="font-size:1.3rem; line-height:1.8; max-width:900px; margin:0 auto;">
+      Founded in 1948 as John S. Baron and Associates in Nashville, TN, Power Service Agency is now in its third generation of family leadership. 
+      Representing industry leaders like Preformed Line Products, Hughes Brothers, and Prysmian Group, we deliver unmatched technical expertise and customer service across Tennessee and Kentucky.
+    </p>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="contact-info">
-            <div><i class="fas fa-map-marker-alt"></i><p>P.O. Box 292924 Nashville TN 37229</p></div>
-            <div><i class="fas fa-phone"></i><p>615-400-2744</p></div>
-            <div><i class="fas fa-envelope"></i><p><a href="mailto:info@powerserviceagency.com">sales@powerserviceagency.com</a></p></div>
-        </div>
-    </footer>
+  <!-- Services -->
+  <div class="services-grid">
+    <div class="service-box">
+      <i class="fas fa-bolt"></i>
+      <h3>Transmission & Distribution</h3>
+      <p>Complete solutions from substations to overhead lines</p>
+    </div>
+    <div class="service-box">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Technical Expertise</h3>
+      <p>Decades of field experience backing every recommendation</p>
+    </div>
+    <div class="service-box">
+      <i class="fas fa-headset"></i>
+      <h3>Customer First</h3>
+      <p>Real people, real solutions — always available</p>
+    </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p style="font-size:1.5rem; margin-bottom:1rem;">Power Service Agency</p>
+    <div class="footer-links">
+      <a href="tel:6154002744"><i class="fas fa-phone"></i> 615-400-2744</a>
+      <a href="mailto:sales@powerserviceagency.com"><i class="fas fa-envelope"></i> sales@powerserviceagency.com</a>
+    </div>
+    <p style="margin-top:2rem; opacity:0.7;">© 2025 Power Service Agency • Nashville, TN</p>
+  </footer>
 
-    <!-- Navbar Scroll Effect -->
-    <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
- <script src="script.js"></script>
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+    });
+  </script>
 </body>
 </html>

@@ -1,339 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
 
-    <style>
-                /* General Reset */
-                * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Sticky Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px 30px;
-            transition: background-color 0.5s ease, box-shadow 0.5s ease;
-            z-index: 10;
-            background-color: #042c55; /* Initially transparent */
-        }
+<style>
+    /* --------------------------------------------------------------
+       GLOBAL THEME (Matches Home + Line Card)
+    --------------------------------------------------------------*/
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: #e6eef7;
+        background: linear-gradient(180deg, #061729, #042c55, #063a6e);
+        background-attachment: fixed;
+        overflow-x: hidden;
+    }
 
-        .navbar.scrolled {
-            background-color: #042c55; /* Blue background when scrolled */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for effect */
-        }
+    /* Glowing animated lines background */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://assets.codepen.io/1468070/wave.svg') repeat-x;
+        animation: drift 12s linear infinite;
+        opacity: 0.15;
+        z-index: -1;
+    }
+    @keyframes drift { from { background-position-x: 0; } to { background-position-x: 1000px; } }
 
-        .navbar .navbar-brand img {
-            max-height: 60px;
-            width: auto;
-        }
+    /* Frosted card */
+    .glass-card {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        padding: 28px;
+        transition: transform .25s ease;
+    }
+    .glass-card:hover { transform: translateY(-5px); }
 
-        .navbar-nav .nav-link {
-            color: #fff;
-            font-size: 1em;
-            transition: color 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #ffda44; /* Accent Yellow */
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-
-        header {
-            
-            padding-top: 125px; /* Add padding to the top */
-            text-align: center;
-            color: #042c55;
-        
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2em;
-        }
-
-        .container {
-            padding: 20px;
-            margin-top: 100px;
-        }
-
-        .container {
-            border-radius: 8px ;
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 15px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .section h2 {
-            font-size: 1.8em;
-            color: #042c55;
-            margin-bottom: 15px;
-        }
-
-        .section p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        .contacts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .contact-card {
-            flex: 1 1 calc(50% - 30px);
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .contact-card h3 {
-            font-size: 1.5em;
-            color: #042c55;
-            margin-bottom: 10px;
-        }
-
-        .contact-card p {
-            font-size: 1em;
-            margin: 5px 0;
-        }
-
-        .contact-card a {
-            color: #042c55;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-card a:hover {
-            color: #ffda44;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #042c55;
-            color: white;
-            margin-top: 30px;
-        }
-
-        footer p {
-            font-size: 0.9em;
-        }
-
-        .info-box {
-            text-align: center;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px; /* Set a fixed width */
-            height: 200px; /* Set a fixed height */
-            display: flex; /* Ensure content aligns properly */
-            flex-direction: column; /* Stack elements vertically */
-            justify-content: center; /* Center content vertically */
-            align-items: center; /* Center content horizontally */
-        }
-
-.info-box i {
-    font-size: 2rem;
-    color: #042c55;
-    margin-bottom: 10px;
+    /* NAVBAR (Matches Line Card) */
+    /* ---------------------------------------------------------
+   MODERN GLASS NAVBAR
+--------------------------------------------------------- */
+.nav-modern {
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    transition: background .3s ease, box-shadow .3s ease;
+    z-index: 9999;
 }
 
-.info-box h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+.nav-modern.scrolled {
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
 }
 
-.info-box p {
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo img {
+    height: 48px;
+    transition: .2s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #e6eef7;
     font-size: 1rem;
-    color: #555;
-}
-
-.info-box a {
-    color: #555;
+    letter-spacing: 0.4px;
     text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: .25s ease;
 }
 
-.info-box a:hover {
-    color: #042c55;
-    text-decoration: underline;
+/* Hover underline animation */
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: #ffda44;
+    transition: width .25s ease;
 }
 
-/* Ensure boxes are evenly spaced and aligned */
-.section.d-flex {
-    gap: 20px; /* Add space between boxes */
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
 }
 
-.territory-image {
-    text-align: center; /* Center the image */
-    margin-top: 20px; /* Add some space above the image */
+/* Mobile menu button */
+.nav-toggle {
+    display: none;
+    color: white;
+    font-size: 1.7rem;
+    cursor: pointer;
 }
 
-.territory-image img {
-    max-width: 100%; /* Ensure the image is responsive */
-    height: auto; /* Maintain aspect ratio */
-   
-   
+/* Mobile dropdown */
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(10px);
+    padding: 16px;
 }
 
+.nav-mobile a {
+    padding: 10px 0;
+    color: #e6eef7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-
-/* Media query for small screens */
+/* Responsive */
 @media (max-width: 768px) {
-            .info-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .info-box {
-                width: 100%;
-                margin: 10px 0;
-            }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
 }
 
 
+    /* Header area */
+    header {
+        padding: 160px 20px 80px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #ffffff;
+        text-shadow: 0 0 12px rgba(255,255,255,0.35);
+    }
+    header p {
+        font-size: 1.2rem;
+        opacity: 0.85;
+    }
 
-    </style>
+    /* Section title */
+    h2.section-title {
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 18px;
+        text-shadow: 0 0 10px rgba(255,255,255,0.25);
+    }
+
+    /* Contact cards */
+    .contact-card h3 {
+        color: #ffda44;
+        font-weight: 600;
+    }
+    .contact-card a {
+        color: #e6eef7;
+        text-decoration: none;
+    }
+    .contact-card a:hover { color: #ffda44; }
+
+    /* Map */
+    .map-container svg {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+        padding: 22px;
+        margin-top: 60px;
+        text-align: center;
+        background: rgba(0,0,0,0.35);
+        color: white;
+        border-top: 1px solid rgba(255,255,255,0.15);
+    }
+</style>
 </head>
+
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="https://djones3265.github.io/PowerServiceAgency/PSA.html">
-            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg" alt="Power Service Agency Logo">
+
+<!-- NAVBAR -->
+<!-- Modern Glass Navbar -->
+<nav class="nav-modern fixed-top">
+    <div class="nav-container">
+        <a class="nav-logo" href="PSA.html">
+            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="#about" style="color:white">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#https://djones3265.github.io/PowerServiceAgency/LineCard.html" style="color:white;">Line Card</a></li>
-                <li class="nav-item"><a class="nav-link" style="color:white" href="https://djones3265.github.io/PowerServiceAgency/Contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header>
-        <h1>Contact Us</h1>
-        <p>We're here to assist you. Reach out to us!</p>
-    </header>
-
-    <div class="container" style="background-color: #042c55;">
-        <!-- Location and General Info Section -->
-        <div class="info-container d-flex justify-content-around flex-wrap">
-            <section class="section d-flex justify-content-around flex-wrap">
-                <div class="info-box">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Location</h3>
-                    <p>P.O. Box 292924 Nashville, TN 37229</p>
-                </div>
-                <div class="info-box">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:sales@powerserviceagency.com">sales@powerserviceagency.com</a></p>
-                </div>
-                <div class="info-box">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Phone Number</h3>
-                    <p><a href="tel:6154002744">615-400-2744</a></p>
-                </div>
-            </section>
+        <div class="nav-links">
+            <a href="PSA.html" class="nav-link">Home</a>
+            <a href="LineCard.html" class="nav-link">Line Card</a>
+            <a href="Contact.html" class="nav-link active">Contact</a>
         </div>
-    
-        <!-- Contacts Section -->
-        <section class="section">
-            <h2>Contacts</h2>
-            <div class="contacts">
-                <div class="contact-card">
+
+        <!-- Mobile menu button -->
+        <div class="nav-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" class="nav-mobile">
+        <a href="PSA.html">Home</a>
+        <a href="LineCard.html">Line Card</a>
+        <a href="Contact.html">Contact</a>
+    </div>
+</nav>
+
+
+<!-- HEADER -->
+<header>
+    <h1>Contact Us</h1>
+    <p>We're here to help — let us know what you need.</p>
+</header>
+
+<div class="container pb-5">
+
+    <!-- INFO BOXES -->
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-md-4">
+            <div class="glass-card text-center">
+                <i class="fas fa-map-marker-alt fa-2x mb-3 text-warning"></i>
+                <h3 class="text-white">Location</h3>
+                <p>P.O. Box 292924<br>Nashville, TN 37229</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card text-center">
+                <i class="fas fa-envelope fa-2x mb-3 text-warning"></i>
+                <h3 class="text-white">Email</h3>
+                <p><a href="mailto:sales@powerserviceagency.com">sales@powerserviceagency.com</a></p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-card text-center">
+                <i class="fas fa-phone fa-2x mb-3 text-warning"></i>
+                <h3 class="text-white">Phone</h3>
+                <p><a href="tel:6154002744">615-400-2744</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTACT CARDS -->
+    <div class="glass-card mt-5">
+        <h2 class="section-title">Our Team</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="glass-card contact-card">
                     <h3>Daniel Baron</h3>
                     <p>Phone: <a href="tel:6154002744">615-400-2744</a></p>
                     <p>Email: <a href="mailto:Daniel@powerserviceagency.com">Daniel@powerserviceagency.com</a></p>
                 </div>
-                <div class="contact-card">
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card contact-card">
                     <h3>Carla Baron</h3>
                     <p>Phone: <a href="tel:6155193525">615-519-3525</a></p>
                     <p>Email: <a href="mailto:GHBPSA@AOL.COM">GHBPSA@AOL.COM</a></p>
                 </div>
-                <div class="contact-card">
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card contact-card">
                     <h3>Ed Stansberry</h3>
                     <p>Phone: <a href="tel:8656045205">865-604-5205</a></p>
                     <p>Email: <a href="mailto:EdstansberryTN@gmail.com">EdstansberryTN@gmail.com</a></p>
                 </div>
-                <div class="contact-card">
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card contact-card">
                     <h3>Diane Simpkins</h3>
                     <p>Phone: <a href="tel:6155662269">615-566-2269</a></p>
                     <p>Email: <a href="mailto:Diane@powerserviceagency.com">Diane@powerserviceagency.com</a></p>
                 </div>
-                <div class="contact-card">
+            </div>
+
+            <div class="col-md-4">
+                <div class="glass-card contact-card">
                     <h3>Dave Brewer</h3>
                     <p>Phone: <a href="tel:8595769070">859-576-9070</a></p>
                     <p>Email: <a href="mailto:Dave@powerserviceagency.com">Dave@powerserviceagency.com</a></p>
                 </div>
             </div>
-        </section>
-    
-        <!-- Territory Section -->
-        <section class="section">
-            <h2>Our Territory</h2>
-            <p>Our territory includes the states of Tennessee, Kentucky, and Indiana. We serve our customers through direct channels and authorized distributor networks.</p>
-            <div class="territory-image">
-                <img src="https://congleton-hacker.com/wp-content/uploads/2021/03/CH_TriState-Map-01.png" alt="Territory Map of Tennessee and Kentucky">
-            </div>
-        </section>
-        
-    </div>
-    <footer>
-        <p>&copy; 2024 Power Service Agency. All rights reserved.</p>
-    </footer>
 
-    <script>
-        // Add 'scrolled' class on navbar when page is scrolled
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+        </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="glass-card mt-5 text-center">
+        <h2 class="section-title">Our Territory</h2>
+        <p class="mb-4">We proudly serve Tennessee, Kentucky, and Indiana.</p>
+
+        <!-- INSERT YOUR SVG HERE -->
+        <div class="map-container">
+            <!-- Your SVG goes here -->
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Power Service Agency. All rights reserved.</p>
+</footer>
+
+<script>
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+        const nav = document.querySelector(".navbar");
+        if (window.scrollY > 40) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
