@@ -312,7 +312,39 @@
         </div>
     </div>
 
-    <!-- MAP -->
+    <!-- Contact Form -->
+<div class="glass-card mt-5">
+  <h2 class="section-title">Send Us a Message</h2>
+  <form id="contactForm" action="https://formspree.io/f/mblvlood" method="POST" novalidate>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="firstName" class="form-label text-warning">First Name</label>
+        <input type="text" id="firstName" name="firstName" class="form-control" required placeholder="John" />
+        <div class="invalid-feedback">Please enter your first name.</div>
+      </div>
+      <div class="col-md-6">
+        <label for="lastName" class="form-label text-warning">Last Name</label>
+        <input type="text" id="lastName" name="lastName" class="form-control" required placeholder="Doe" />
+        <div class="invalid-feedback">Please enter your last name.</div>
+      </div>
+      <div class="col-12">
+        <label for="email" class="form-label text-warning">Email</label>
+        <input type="email" id="email" name="_replyto" class="form-control" required placeholder="john@example.com" />
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+      <div class="col-12">
+        <label for="message" class="form-label text-warning">Message</label>
+        <textarea id="message" name="message" rows="5" class="form-control" required placeholder="Your message..."></textarea>
+        <div class="invalid-feedback">Please enter your message.</div>
+      </div>
+      <div class="col-12 text-center mt-3">
+        <button type="submit" class="btn btn-warning px-5 fw-bold">Send Message</button>
+      </div>
+    </div>
+  </form>
+  <div id="formResponse" class="mt-3" style="display:none;"></div>
+</div>
+
     
 
 </div>
@@ -328,9 +360,104 @@
         if (window.scrollY > 40) nav.classList.add("scrolled");
         else nav.classList.remove("scrolled");
     });
+
+    (() => {
+    const form = document.getElementById('contactForm');
+    const formResponse = document.getElementById('formResponse');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic HTML5 validation check
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formResponse.style.display = 'block';
+          formResponse.style.color = '#ffda44';
+          formResponse.textContent = "Thanks for reaching out! We'll get back to you soon.";
+          form.reset();
+          form.classList.remove('was-validated');
+        } else {
+          const data = await response.json();
+          formResponse.style.display = 'block';
+          formResponse.style.color = 'tomato';
+          formResponse.textContent = data.error || "Oops! There was a problem submitting your form.";
+        }
+      } catch (error) {
+        formResponse.style.display = 'block';
+        formResponse.style.color = 'tomato';
+        formResponse.textContent = "Network error. Please try again later.";
+      }
+    });
+  })();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
+<style>
+    /* Override Bootstrap inputs to match your style */
+.form-control {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e6eef7;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #ffda44;
+  color: #000;
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 218, 68, 0.6);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.invalid-feedback {
+  color: #ffda44;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Button overrides */
+.btn-warning {
+  background-color: #ffda44;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(255, 218, 68, 0.5);
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover, .btn-warning:focus {
+  background-color: #e6c73d;
+  box-shadow: 0 12px 30px rgba(255, 218, 68, 0.7);
+  color: #000;
+}
+
+/* Container spacing */
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+</style>
 </html>
