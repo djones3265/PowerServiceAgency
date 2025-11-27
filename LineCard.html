@@ -390,6 +390,12 @@ const abbrLabel = document.getElementById('state-abbr');
 
 document.querySelectorAll('.state').forEach(state => {
   state.addEventListener('mousemove', e => {
+    // Don't show abbreviation on small screens (mobile)
+    if (window.innerWidth <= 768) {
+      abbrLabel.style.display = 'none';
+      return;
+    }
+
     const abbr = stateAbbreviations[state.dataset.state];
     if (!abbr) return;
 
@@ -397,24 +403,15 @@ document.querySelectorAll('.state').forEach(state => {
     abbrLabel.style.display = 'block';
     abbrLabel.textContent = abbr;
 
-    // Position abbreviation centered on the state's bounding box
     const bbox = state.getBoundingClientRect();
-
-    // Calculate center coordinates relative to viewport + page scroll
     const centerX = bbox.left + bbox.width / 2 + window.pageXOffset;
     const centerY = bbox.top + bbox.height / 2 + window.pageYOffset;
 
-    // Detect if on mobile / small screen
-    const isMobile = window.innerWidth <= 768;
+    // Original vertical offset for desktop
+    const verticalOffset = 455;
 
-    // Set vertical offset based on screen size
-    const verticalOffset = isMobile ? 465 : 455; // tweak these numbers to your liking
-
-    // Position the abbreviation div centered with adjusted vertical offset
     abbrLabel.style.left = centerX + 'px';
     abbrLabel.style.top = (centerY - verticalOffset) + 'px';
-
-    // To perfectly center the text (since div positioning is from top-left)
     abbrLabel.style.transform = 'translate(-50%, -50%)';
   });
 
@@ -422,6 +419,7 @@ document.querySelectorAll('.state').forEach(state => {
     abbrLabel.style.display = 'none';
   });
 });
+
 
 
     /* Line card data */
