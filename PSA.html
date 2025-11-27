@@ -53,6 +53,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.12);
     transition: background .3s ease, box-shadow .3s ease;
     z-index: 9999;
+    position: relative
 }
 
 .nav-modern.scrolled {
@@ -118,9 +119,21 @@
 .nav-mobile {
     display: none;
     flex-direction: column;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.85);
     backdrop-filter: blur(10px);
-    padding: 16px;
+    padding: 20px 24px;
+    position: absolute;
+    top: 100%;           /* perfect placement */
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99999;      /* ← makes links clickable */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(0,212,255,0.3);
+}
+
+.nav-mobile.shown {
+    display: flex;
 }
 
 .nav-mobile a {
@@ -128,6 +141,7 @@
     color: #e6eef7;
     text-decoration: none;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer; /* add this */
 }
 
 /* Responsive */
@@ -260,30 +274,30 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="nav-modern fixed-top">
-    <div class="nav-container">
-        <a class="nav-logo" href="PSA.html">
-            <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg">
-        </a>
+<!-- Navbar -->
+<nav id="navbar" class="nav-modern fixed-top">
+  <div class="nav-container">
+      <a class="nav-logo" href="PSA.html">
+          <img src="https://www.powerserviceagency.com/wp-content/uploads/2022/08/logoimg.jpg">
+      </a>
 
-        <div class="nav-links">
-            <a href="PSA.html" class="nav-link active">Home</a>
-            <a href="LineCard.html" class="nav-link">Line Card</a>
-            <a href="Contact.html" class="nav-link ">Contact</a>
-        </div>
+      <div class="nav-links">
+          <a href="PSA.html" class="nav-link active">Home</a>
+          <a href="LineCard.html" class="nav-link">Line Card</a>
+          <a href="Contact.html" class="nav-link">Contact</a>
+      </div>
 
-        <!-- Mobile menu button -->
-        <div class="nav-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-    </div>
+      <div class="nav-toggle">
+          <i class="fas fa-bars"></i>
+      </div>
+  </div>
 
-    <!-- Mobile dropdown -->
-    <div id="mobileMenu" class="nav-mobile">
-        <a href="PSA.html">Home</a>
-        <a href="LineCard.html">Line Card</a>
-        <a href="Contact.html">Contact</a>
-    </div>
+  <!-- MOVE IT INSIDE THE NAV -->
+  <div id="mobileMenu" class="nav-mobile">
+      <a href="PSA.html">Home</a>
+      <a href="LineCard.html">Line Card</a>
+      <a href="Contact.html">Contact</a>
+  </div>
 </nav>
 
   <!-- Hero -->
@@ -333,11 +347,30 @@
     <p style="margin-top:2rem; opacity:0.7;">© 2025 Power Service Agency • Nashville, TN</p>
   </footer>
 
-  <script>
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+<script>
+// Global toggle function - defined early so inline onclick works
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('shown');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Navbar scroll effect
+  const nav = document.querySelector('.nav-modern');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 100);
+  });
+
+  // Optional: Use event listener instead of inline onclick (better practice)
+  document.querySelector('.nav-toggle').addEventListener('click', toggleMenu);
+
+  // Close menu when clicking a mobile link
+  document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('shown');
     });
-  </script>
+  });
+});
+</script>
+
 </body>
 </html>
