@@ -346,6 +346,17 @@
 
       </g>
     </svg>
+    <div id="state-abbr" style="
+  position: absolute;
+  pointer-events: none;
+  color: var(--electric);
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  display: none;
+  user-select: none;
+  text-shadow: 0 0 5px black;
+"></div>
 
     <div id="tooltip" class="tooltip"></div>
 
@@ -369,18 +380,43 @@
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
     });
 
-    /* Tooltip logic */
-    const tooltip = document.getElementById('tooltip');
-    document.querySelectorAll('.state').forEach(state => {
-      const name = state.dataset.state.toUpperCase();
-      state.addEventListener('mousemove', e => {
-        tooltip.style.opacity = 1;
-        tooltip.textContent = name;
-        tooltip.style.left = e.pageX + 15 + "px";
-        tooltip.style.top = e.pageY - 30 + "px";
-      });
-      state.addEventListener('mouseleave', () => tooltip.style.opacity = 0);
-    });
+    const stateAbbreviations = {
+  tennessee: "TN",
+  kentucky: "KY",
+  indiana: "IN"
+};
+
+const abbrLabel = document.getElementById('state-abbr');
+
+document.querySelectorAll('.state').forEach(state => {
+  state.addEventListener('mousemove', e => {
+    const abbr = stateAbbreviations[state.dataset.state];
+    if (!abbr) return;
+
+    // Show abbreviation
+    abbrLabel.style.display = 'block';
+    abbrLabel.textContent = abbr;
+
+    // Position abbreviation centered on the state's bounding box
+    const bbox = state.getBoundingClientRect();
+
+    // Calculate center coordinates relative to viewport + page scroll
+    const centerX = bbox.left + bbox.width / 2 + window.pageXOffset;
+    const centerY = bbox.top + bbox.height / 2 + window.pageYOffset;
+
+    // Position the abbreviation div centered
+    abbrLabel.style.left = centerX + 'px';
+    abbrLabel.style.top = (centerY - 455) + 'px';
+
+    // To perfectly center the text (since div positioning is from top-left)
+    abbrLabel.style.transform = 'translate(-50%, -50%)';
+  });
+
+  state.addEventListener('mouseleave', () => {
+    abbrLabel.style.display = 'none';
+  });
+});
+
 
     /* Line card data */
     const lineCards = {
@@ -438,6 +474,8 @@
       document.getElementById("state-content").innerHTML = html;
     }
 
+
+    /* Mobile menu toggle */
     function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('shown');
 }
