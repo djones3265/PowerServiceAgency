@@ -37,8 +37,9 @@
     .energy-lines {
       position: absolute;
       width: 100%; height: 100%;
+      opacity: 0.3;
       background: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,212,255,0.03) 50px, rgba(0,212,255,0.03) 52px);
-      animation: flow 20s linear infinite;
+      animation: flow 60s linear infinite;
     }
     @keyframes flow { 0% { transform: translateX(0); } 100% { transform: translateX(-52px); } }
 
@@ -252,7 +253,7 @@
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.15);
       backdrop-filter: blur(10px);
-      transition: 0.4s;
+      transition: transform 0.2s ease, border-color 0.2s ease;
       animation: fadeIn 0.7s ease forwards;
       opacity: 0;
     }
@@ -741,6 +742,8 @@ const lineCards = {
             
             <img 
               src="${c.logo}" 
+              loading="lazy"
+              decoding="async"
               alt="${c.title}" 
               style="
                 width: 100%;
