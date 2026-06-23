@@ -748,12 +748,25 @@ const lineCards = {
       companies.forEach((c, i) => {
         html += `
           <div class="company" style="animation-delay:${i * 0.25}s;">
+            
+            <img 
+              src="${c.logo}" 
+              alt="${c.title}" 
+              style="
+                width: 100%;
+                max-height: 80px;
+                object-fit: contain;
+                margin-bottom: 12px;
+              "
+              onerror="this.style.display='none'"
+            />
+
             <h2>${c.title}</h2>
             <p>${c.desc}</p>
+
           </div>
         `;
-      });
-
+});
       html += `</div>`;
       document.getElementById("state-content").innerHTML = html;
     }
