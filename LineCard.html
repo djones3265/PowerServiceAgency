@@ -423,73 +423,301 @@ document.querySelectorAll('.state').forEach(state => {
 
 
     /* Line card data */
-    const lineCards = {
+const lineCards = {
   tennessee: [
-    { title: "Hastings", desc: "", logo: "" },
-    { title: "American Polymer", desc: "", logo: "" },
-    { title: "Herculock", desc: "", logo: "" },
-    { title: "Electriglass", desc: "", logo: "" },
-    { title: "Howard", desc: "", logo: "" },
-    { title: "Prysmian Group", desc: "", logo: "" },
-    { title: "Hughes Brothers Inc", desc: "", logo: "" },
-    { title: "Medien", desc: "", logo: "" },
-    { title: "Power Design Inc", desc: "", logo: "" },
-    { title: "Madi", desc: "", logo: "" },
-    { title: "Plymouth Rubber", desc: "", logo: "" },
-    { title: "Peak Demand (ACCU GRID)", desc: "", logo: "" },
-    { title: "Quick Patch", desc: "", logo: "" },
-    { title: "PLP", desc: "NEW LOGO", logo: "" },
-    { title: "Rohn", desc: "", logo: "" },
-    { title: "Salco", desc: "", logo: "" },
-    { title: "Tech Products", desc: "", logo: "" },
-    { title: "Virginia Transformers", desc: "", logo: "" },
-    { title: "First Power", desc: "", logo: "" },
-    { title: "Liberty Manufacturing", desc: "", logo: "" },
-    { title: "Yale Cordage", desc: "", logo: "" },
-    { title: "Ensto", desc: "", logo: "" },
-    { title: "EMA", desc: "", logo: "" },
-    { title: "Waison", desc: "", logo: "" },
-    { title: "Line Works Bucket Products", desc: "", logo: "" }
+    {
+      title: "Hastings",
+      desc: "A worldwide supplier of hot line tools and equipment.",
+      logo: "https://www.hfgp.com/themes/atalaya/assets/graphics/Hastings-Logo-Yellow.png"
+    },
+    {
+      title: "American Polymer",
+      desc: "Polymer concrete, HDPE, and Tier Rated lightweight composite handholes, pull boxes, and vaults.",
+      logo: "https://www.apcunderground.com/wp-content/uploads/2023/12/APC-Logo-Full-Color.png"
+    },
+    {
+      title: "Herculock",
+      desc: "Hercules Industries provides solid brass tumbler pin padlocks for utility needs.",
+      logo: "https://www.herculock.com/wp-content/uploads/2024/05/master_logo_no_backdrop-768x482.png"
+    },
+    {
+      title: "Electriglass",
+      desc: "Fiberglass products for the underground electrical distribution industry.",
+      logo: "https://www.electri-glass.com/images/logosh.gif"
+    },
+    {
+      title: "Howard",
+      desc: "",
+      logo: ""
+    },
+    {
+      title: "Prysmian Group",
+      desc: "Leading designer and manufacturer of aluminum, copper, and fiber optic cable systems for global power and telecom infrastructure.",
+      logo: "https://www.prysmian.com/themes/custom/prysmian/static/images/rebranding/logo_prysmian_2023_white@2x.png"
+    },
+    {
+      title: "Hughes Brothers Inc",
+      desc: "Leader in electric transmission and distribution industry products built for reliability and strength.",
+      logo: "https://www.hughesbros.com/themes/custom/hughesbros/hughes-brothers-horizontal.svg"
+    },
+    {
+      title: "Meiden",
+      desc: "High voltage vacuum breakers and electrical switching equipment.",
+      logo: "https://images.squarespace-cdn.com/content/v1/65ce46a67c435b2d9cdd0927/fc63cff1-6834-49c2-acea-419a9f3873f0/cmn_logo01.png?format=1500w"
+    },
+    {
+      title: "Madi",
+      desc: "Lineman tools designed by linemen.",
+      logo: "https://www.madilinemantools.com/cdn/shop/files/MADI_logo_transparent_white_black_registered.png?v=1778110458&width=832"
+    },
+    {
+      title: "Plymouth Rubber",
+      desc: "Manufacturer of electrical tapes and insulation materials.",
+      logo: "https://www.plymouthrubber.com/assets/svg/logo-plymouth-small.svg"
+    },
+    {
+      title: "Peak Demand (ACCU GRID)",
+      desc: "Insulators, bushings, components, and current transformers for utility infrastructure.",
+      logo: ""
+    },
+    {
+      title: "Quick Patch",
+      desc: "UV/sunlight activated fiberglass reinforced repair patch for fast, durable repairs.",
+      logo: ""
+    },
+    {
+      title: "PLP",
+      desc: "Preformed Line Products provides cable anchoring, fiber optic hardware, and cross-connect systems.",
+      logo: "https://plp.com/templates/preformed-home/img/preformed-line-products-logo-new-brand@2x.png"
+    },
+    {
+      title: "Rohn",
+      desc: "Engineered utility structures and towers since 1948.",
+      logo: "https://rohnnet.com/wp-content/uploads/2025/07/imgi_17_thumb.png"
+    },
+    {
+      title: "Salco",
+      desc: "Manufacturer of utility lighting brackets and substation components built to spec.",
+      logo: "https://images.squarespace-cdn.com/content/v1/5d2dde006eca7b00019b2882/f432b4b6-258f-487f-9bab-4305a2309ca2/Salco-Inc-web-logo.png?format=500w"
+    },
+    {
+      title: "Tech Products",
+      desc: "Signs, tags, and markers for electric utilities.",
+      logo: "https://easj5eyj5v8.exactdn.com/wp-content/uploads/2023/07/tech-products-signs-tags-markers.png?strip=all&w=359"
+    },
+    {
+      title: "Virginia Transformers",
+      desc: "Top U.S. manufacturer of power transformers.",
+      logo: "https://www.vatransformer.com/wp-content/uploads/2026/02/VTC-Corp-Logo-1.png#8434"
+    },
+    {
+      title: "First Power",
+      desc: "The Stinger® System improves safety and efficiency for disconnect switch operations.",
+      logo: "https://www.firstpowergroupllc.com/frontend/img/svgs/First_Power.5f6d1850eb613.svg"
+    },
+    {
+      title: "Liberty Manufacturing",
+      desc: "Machining and manufacturing company specializing in electrical connectors and utility hardware.",
+      logo: "https://lh3.googleusercontent.com/sitesv/AA5AbUARVRKV6gNEQZaw89Rs8xHtkYSDqH7aO9LGQ-diHRZQ9-cWlHnuwkt8WoojlYJ7TYvH5Ql9X9iPD2rbL4UkR17L-mFrr6_WGfPtbJL_IghIgKtccp4bagij3HhSl3N-9z_ka3uvDWznmJC48vLecxN3_XzVh6RyFCiFkmKKJ9fVICrVwsPYGq7FWovkxpw=w16383"
+    },
+    {
+      title: "Yale Cordage",
+      desc: "Advanced fiber ropes engineered for extreme weather and heavy-duty use.",
+      logo: "https://www.yalecordage.com/wp-content/uploads/2021/03/Yale_Logo_2018_White_800_live.png"
+    },
+    {
+      title: "Ensto",
+      desc: "Sustainable and reliable electricity distribution solutions.",
+      logo: ""
+    },
+    {
+      title: "EMA",
+      desc: "Electromechanical systems for industrial machinery and equipment.",
+      logo: ""
+    },
+    {
+      title: "Waison",
+      desc: "Smart meters and energy monitoring systems for utilities.",
+      logo: "https://en.wasion.com/public/uploads/images/20220517/ad428c0c9f42220db4e310a71131810b.png"
+    },
+    {
+      title: "Line Works Bucket Products",
+      desc: "Bucket and attachment products for construction and industrial equipment.",
+      logo: "https://lineworkbucketproducts.com/cdn/shop/files/615A2419-F8BE-4131-B0CC-6352869134A6_1668x500.png?v=1671040118"
+    },
+    {
+      title: "QEI",
+      desc: "Real-time utility monitoring and power network management systems.",
+      logo: "https://www.qeiinc.com/wp-content/uploads/2024/03/QEI-Logo-with-Tagline-Rev.png"
+    }
   ],
 
   kentucky: [
-    { title: "EDM (KY Only)", desc: "", logo: "" },
-    { title: "Hastings", desc: "", logo: "" },
-    { title: "American Polymer", desc: "", logo: "" },
-    { title: "Herculock", desc: "", logo: "" },
-    { title: "Electriglass", desc: "", logo: "" },
-    { title: "Howard", desc: "", logo: "" },
-    { title: "Prysmian Group", desc: "", logo: "" },
-    { title: "Hughes Brothers Inc", desc: "", logo: "" },
-    { title: "Medien", desc: "", logo: "" },
-    { title: "Power Design Inc", desc: "", logo: "" },
-    { title: "Madi", desc: "", logo: "" },
-    { title: "Plymouth Rubber", desc: "", logo: "" },
-    { title: "Peak Demand (ACCU GRID)", desc: "", logo: "" },
-    { title: "Quick Patch", desc: "", logo: "" },
-    { title: "PLP", desc: "NEW LOGO", logo: "" },
-    { title: "Rohn", desc: "", logo: "" },
-    { title: "Salco", desc: "", logo: "" },
-    { title: "Tech Products", desc: "", logo: "" },
-    { title: "Virginia Transformers", desc: "", logo: "" },
-    { title: "First Power", desc: "", logo: "" },
-    { title: "Liberty Manufacturing", desc: "", logo: "" },
-    { title: "Yale Cordage", desc: "", logo: "" },
-    { title: "Ensto", desc: "", logo: "" },
-    { title: "EMA", desc: "", logo: "" },
-    { title: "Waison", desc: "", logo: "" },
-    { title: "Line Works Bucket Products", desc: "", logo: "" }
+    {
+      title: "EDM (KY Only)",
+      desc: "",
+      logo: ""
+    },
+    {
+      title: "Hastings",
+      desc: "A worldwide supplier of hot line tools and equipment.",
+      logo: "https://www.hfgp.com/themes/atalaya/assets/graphics/Hastings-Logo-Yellow.png"
+    },
+    {
+      title: "American Polymer",
+      desc: "Polymer concrete, HDPE, and utility vault solutions.",
+      logo: "https://www.apcunderground.com/wp-content/uploads/2023/12/APC-Logo-Full-Color.png"
+    },
+    {
+      title: "Herculock",
+      desc: "Utility-grade brass padlocks and security hardware.",
+      logo: "https://www.herculock.com/wp-content/uploads/2024/05/master_logo_no_backdrop-768x482.png"
+    },
+    {
+      title: "Electriglass",
+      desc: "Fiberglass utility infrastructure products.",
+      logo: "https://www.electri-glass.com/images/logosh.gif"
+    },
+    {
+      title: "Howard",
+      desc: "",
+      logo: ""
+    },
+    {
+      title: "Prysmian Group",
+      desc: "Power and telecom cable systems for global infrastructure.",
+      logo: "https://www.prysmian.com/themes/custom/prysmian/static/images/rebranding/logo_prysmian_2023_white@2x.png"
+    },
+    {
+      title: "Hughes Brothers Inc",
+      desc: "Transmission and distribution utility hardware.",
+      logo: "https://www.hughesbros.com/themes/custom/hughesbros/hughes-brothers-horizontal.svg"
+    },
+    {
+      title: "Meiden",
+      desc: "High voltage vacuum breakers.",
+      logo: "https://images.squarespace-cdn.com/content/v1/65ce46a67c435b2d9cdd0927/fc63cff1-6834-49c2-acea-419a9f3873f0/cmn_logo01.png?format=1500w"
+    },
+    {
+      title: "Madi",
+      desc: "Lineman-designed tools and equipment.",
+      logo: "https://www.madilinemantools.com/cdn/shop/files/MADI_logo_transparent_white_black_registered.png?v=1778110458&width=832"
+    },
+    {
+      title: "Plymouth Rubber",
+      desc: "Electrical tapes and insulation products.",
+      logo: "https://www.plymouthrubber.com/assets/svg/logo-plymouth-small.svg"
+    },
+    {
+      title: "Peak Demand (ACCU GRID)",
+      desc: "Utility-grade insulators, bushings, and components.",
+      logo: ""
+    },
+    {
+      title: "Quick Patch",
+      desc: "UV-activated fiberglass repair system.",
+      logo: ""
+    },
+    {
+      title: "PLP",
+      desc: "Cable hardware, fiber optic closures, and utility systems.",
+      logo: "https://plp.com/templates/preformed-home/img/preformed-line-products-logo-new-brand@2x.png"
+    },
+    {
+      title: "Rohn",
+      desc: "Engineered utility towers and structures.",
+      logo: "https://rohnnet.com/wp-content/uploads/2025/07/imgi_17_thumb.png"
+    },
+    {
+      title: "Salco",
+      desc: "Utility lighting brackets and custom substation components.",
+      logo: "https://images.squarespace-cdn.com/content/v1/5d2dde006eca7b00019b2882/f432b4b6-258f-487f-9bab-4305a2309ca2/Salco-Inc-web-logo.png?format=500w"
+    },
+    {
+      title: "Tech Products",
+      desc: "Utility signage, tags, and markers.",
+      logo: "https://easj5eyj5v8.exactdn.com/wp-content/uploads/2023/07/tech-products-signs-tags-markers.png?strip=all&w=359"
+    },
+    {
+      title: "Virginia Transformers",
+      desc: "Power transformer manufacturing leader.",
+      logo: "https://www.vatransformer.com/wp-content/uploads/2026/02/VTC-Corp-Logo-1.png#8434"
+    },
+    {
+      title: "First Power",
+      desc: "Switch operation safety systems.",
+      logo: "https://www.firstpowergroupllc.com/frontend/img/svgs/First_Power.5f6d1850eb613.svg"
+    },
+    {
+      title: "Liberty Manufacturing",
+      desc: "Electrical connectors and utility hardware manufacturing.",
+      logo: "https://lh3.googleusercontent.com/sitesv/AA5AbUARVRKV6gNEQZaw89Rs8xHtkYSDqH7aO9LGQ-diHRZQ9-cWlHnuwkt8WoojlYJ7TYvH5Ql9X9iPD2rbL4UkR17L-mFrr6_WGfPtbJL_IghIgKtccp4bagij3HhSl3N-9z_ka3uvDWznmJC48vLecxN3_XzVh6RyFCiFkmKKJ9fVICrVwsPYGq7FWovkxpw=w16383"
+    },
+    {
+      title: "Yale Cordage",
+      desc: "High-performance industrial rope solutions.",
+      logo: "https://www.yalecordage.com/wp-content/uploads/2021/03/Yale_Logo_2018_White_800_live.png"
+    },
+    {
+      title: "Ensto",
+      desc: "Sustainable power distribution systems.",
+      logo: ""
+    },
+    {
+      title: "EMA",
+      desc: "Industrial electromechanical systems provider.",
+      logo: ""
+    },
+    {
+      title: "Waison",
+      desc: "Smart metering and energy analytics systems.",
+      logo: "https://en.wasion.com/public/uploads/images/20220517/ad428c0c9f42220db4e310a71131810b.png"
+    },
+    {
+      title: "Line Works Bucket Products",
+      desc: "Bucket truck attachments and utility equipment.",
+      logo: "https://lineworkbucketproducts.com/cdn/shop/files/615A2419-F8BE-4131-B0CC-6352869134A6_1668x500.png?v=1671040118"
+    }
   ],
 
   indiana: [
-    { title: "Yale Cordage", desc: "", logo: "" },
-    { title: "Waison", desc: "", logo: "" },
-    { title: "Electriglass", desc: "", logo: "" },
-    { title: "Salco", desc: "", logo: "" },
-    { title: "Plymouth Rubber", desc: "", logo: "" },
-    { title: "Sherman Riley", desc: "", logo: "" },
-    { title: "First Power Group", desc: "", logo: "" }
+    {
+      title: "Yale Cordage",
+      desc: "Industrial rope solutions for extreme environments.",
+      logo: "https://www.yalecordage.com/wp-content/uploads/2021/03/Yale_Logo_2018_White_800_live.png"
+    },
+    {
+      title: "Waison",
+      desc: "Smart meters and energy monitoring systems.",
+      logo: "https://en.wasion.com/public/uploads/images/20220517/ad428c0c9f42220db4e310a71131810b.png"
+    },
+    {
+      title: "Electriglass",
+      desc: "Fiberglass utility distribution products.",
+      logo: "https://www.electri-glass.com/images/logosh.gif"
+    },
+    {
+      title: "Salco",
+      desc: "Utility brackets and substation components.",
+      logo: "https://images.squarespace-cdn.com/content/v1/5d2dde006eca7b00019b2882/f432b4b6-258f-487f-9bab-4305a2309ca2/Salco-Inc-web-logo.png?format=500w"
+    },
+    {
+      title: "Plymouth Rubber",
+      desc: "Electrical insulation tape manufacturer.",
+      logo: "https://www.plymouthrubber.com/assets/svg/logo-plymouth-small.svg"
+    },
+    {
+      title: "Sherman Riley",
+      desc: "",
+      logo: ""
+    },
+    {
+      title: "First Power Group",
+      desc: "Switch operation safety and utility tools.",
+      logo: "https://www.firstpowergroupllc.com/frontend/img/svgs/First_Power.5f6d1850eb613.svg"
+    }
   ]
+
 };
 
     /* Click to load line card */
