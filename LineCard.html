@@ -452,12 +452,6 @@ const lineCards = {
       url: "https://www.electri-glass.com/"
     },
     {
-      title: "Howard",
-      desc: "",
-      logo: "",
-      url: null
-    },
-    {
       title: "Prysmian Group",
       desc: "Leading designer and manufacturer of cable systems for global power and telecom infrastructure.",
       logo: "https://www.prysmian.com/themes/custom/prysmian/static/images/rebranding/logo_prysmian_2023_white@2x.png",
@@ -747,26 +741,20 @@ const lineCards = {
 
       companies.forEach((c, i) => {
         html += `
-          <div class="company" style="animation-delay:${i * 0.25}s;">
-            
+          <a href="${c.url || '#'}" target="_blank" class="company" style="animation-delay:${i * 0.25}s; text-decoration:none; color:inherit;">
+
             <img 
               src="${c.logo}" 
-              loading="lazy"
-              decoding="async"
               alt="${c.title}" 
-              style="
-                width: 100%;
-                max-height: 80px;
-                object-fit: contain;
-                margin-bottom: 12px;
-              "
+              loading="lazy"
               onerror="this.style.display='none'"
+              style="width:100%; max-height:80px; object-fit:contain; margin-bottom:12px;"
             />
 
             <h2>${c.title}</h2>
             <p>${c.desc}</p>
 
-          </div>
+          </a>
         `;
 });
       html += `</div>`;
